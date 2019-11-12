@@ -10,7 +10,7 @@ export class ProductosComponent implements OnInit {
 
   lista = null;
   prod = {
-    "_id": null,
+    "codigo": null,
     "descripcion": null,
     "precio": null
   }
@@ -29,10 +29,12 @@ export class ProductosComponent implements OnInit {
 
   nuevo() {
     this.productosServicio.nuevo(this.prod).subscribe(result => {
-      if (result == 'ok') {
-        this.limpiar();
-        this.recuperarTodos();
-      }
+      // if (result == 'ok') {
+      //   this.limpiar();
+      //   this.recuperarTodos();
+      // }
+      this.limpiar();
+      this.recuperarTodos();
     });
   }
 
@@ -40,9 +42,10 @@ export class ProductosComponent implements OnInit {
     if (!confirm("Esta seguro que desea eliminar este registro?"))
       return;
     this.productosServicio.eliminar(codigo).subscribe(result => {
-      if (result == 'ok') {
-        this.recuperarTodos();
-      }
+      // if (result == 'ok') {
+      //   this.recuperarTodos();
+      // }
+      this.recuperarTodos();
     });
   }
 
@@ -57,25 +60,25 @@ export class ProductosComponent implements OnInit {
 
   mostrar(codigo) {
     this.productosServicio.mostrar(codigo).subscribe(resultado => {
-      // this.prod = resultado;
-      this.prod._id = resultado._id;
-      this.prod.descripcion = resultado.descripcion;
-      this.prod.precio = resultado.precio;
+      this.prod = resultado;
     });
   }
 
   hayRegistros() {
-    console.log(this.lista);
-    if (this.lista.length>0) {
-      return true;
-    } else {
-      return false;
+    try {
+      console.log(this.lista);
+      if (this.lista.length > 0) {
+        return true;
+      } else {
+        return false;
+      }
+    } catch (e) {
     }
   }
 
   limpiar() {
     this.prod = {
-      _id: null,
+      codigo: null,
       descripcion: null,
       precio: null
     };

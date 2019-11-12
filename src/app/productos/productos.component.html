@@ -38,11 +38,11 @@
       </thead>
       <tbody>
         <tr *ngFor="let producto of lista">
-          <th scope="row">{{producto._id}}</th>
+          <th scope="row">{{producto.codigo}}</th>
           <td>{{producto.descripcion}}</td>
           <td>{{producto.precio}}</td>
-          <td><button (click)="eliminar(producto._id)" class="btn btn-danger">Borrar?</button></td>
-          <td><button (click)="mostrar(producto._id)" class="btn btn-warning">Seleccionar</button></td>
+          <td><button (click)="eliminar(producto.codigo)" class="btn btn-danger">Borrar?</button></td>
+          <td><button (click)="mostrar(producto.codigo)" class="btn btn-warning">Seleccionar</button></td>
         </tr>
       </tbody>
     </table>

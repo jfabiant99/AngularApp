@@ -4,7 +4,7 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })	
 export class ProductosService {
-  url='http://localhost:3000/products/'; 
+  url='http://localhost:3000/productos/'; 
   constructor(private http: HttpClient) { }
   listar() {
     return this.http.get(`${this.url}listar`);
