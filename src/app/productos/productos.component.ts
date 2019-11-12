@@ -29,38 +29,34 @@ export class ProductosComponent implements OnInit {
 
   nuevo() {
     this.productosServicio.nuevo(this.prod).subscribe(result => {
-      // if (result == 'ok') {
-      //   this.limpiar();
-      //   this.recuperarTodos();
-      // }
       this.limpiar();
       this.recuperarTodos();
     });
   }
 
   eliminar(codigo) {
-    if (!confirm("Esta seguro que desea eliminar este registro?"))
-      return;
-    this.productosServicio.eliminar(codigo).subscribe(result => {
-      // if (result == 'ok') {
-      //   this.recuperarTodos();
-      // }
+    try {
+      if (!confirm("Esta seguro que desea eliminar este registro?"))
+        return;
+      this.productosServicio.eliminar(codigo).subscribe(result => {
+        console.log(result);
+      });
       this.recuperarTodos();
-    });
+    } catch (e) {
+    }
   }
 
   actualizar() {
     this.productosServicio.actualizar(this.prod).subscribe(result => {
-      if (result.nModified == '1') {
-        this.limpiar();
-        this.recuperarTodos();
-      }
+      this.limpiar();
+      this.recuperarTodos();
     });
   }
 
   mostrar(codigo) {
+    console.log("This is the code: " + codigo);
     this.productosServicio.mostrar(codigo).subscribe(resultado => {
-      this.prod = resultado;
+      this.prod = resultado[0];
     });
   }
 
